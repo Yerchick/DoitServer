@@ -46,42 +46,26 @@ public class Server {
     }
     
     
-    public static func upload(imageData:Data,description desc:String, completion: @escaping (AsyncResult<String>)->())  {
+    public static func upload(imageData:Data, imageLocation: String, description desc:String, completion: @escaping (AsyncResult<String>)->())  {
         let url = URL(string: "http://api.doitserver.in.ua/image")
-        //var result: String = ""
         let session = URLSession.shared
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.addValue(Server.token!, forHTTPHeaderField: "token")
-        request.addValue("sDAsdasdasd", forHTTPHeaderField: "description")
+        
         let hastag = ""
         let longitude = 1.233
         let latitude = 12.124
-        var postString = "image="
-        var data = NSMutableData()
-         data.append(   postString.data(using: String.Encoding.utf8)! )
-        data.append(imageData)
-        postString = "&description=" + desc
+        var postString = "image=" + imageLocation
+        postString += "&description=" + desc
         postString += "&hashtag=" + hastag
          postString += "&latitude=" + (latitude.description)
-        postString += "&logitude=" + (longitude.description)
-        data.append(postString.data(using: String.Encoding.utf8)!)
-       //  let boundary = "Boundary-\(NSUUID().uuidString)"
+        postString += "&longitude=" + (longitude.description)
+
         
-//        let param = [
-//            "description"  : desc,
-//            "hashtag"    : "#Kargopolov",
-//            "latitude"    : "9",
-//            "longitude" : "12"
-//        ]
-//        
-        
-       // request.httpBody = createRequestBodyWith(parameters: param as [String : NSObject], imageData: imageData, boundary: boundary) as Data
-        
-        
-        
-        request.httpBody =  data as Data
-        session.dataTask(with: request) { (data, response, error) -> Void in
+       print(postString)
+        request.httpBody =  postString.data(using: String.Encoding.utf8)
+        session.dataTask(with: request)    { (data, response, error) in
             if let data = data {
                 print("------------------------")
                 do{
@@ -89,51 +73,22 @@ public class Server {
                     print(data)
                     print("1------------------------")
                     print(response)
+                    print(String(data: data, encoding: String.Encoding.utf8)!)
                     print("2------------------------")
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
                     print(json)
                     print("3------------------------")
-                    completion(AsyncResult.Success(json as Any as! String))
-
+                    completion(AsyncResult.Success((json as AnyObject).description))
+                    
                     print(json)
-                    if let dict = json as? [String : String]{
-                     //   if let number = dict["token"] {
-                                                   // }
-                    }
                 }catch{
                     completion(AsyncResult.Failure(error))
                 }
+            
             }
-            }.resume()
+            
+        }.resume()
     }
-
-//    public static func createRequestBodyWith(parameters:[String:NSObject], imageData:Data, boundary:String) -> NSData{
-//        
-//        let body = NSMutableData()
-//        
-//        for (key, value) in parameters {
-//            body.appendString(string: "--\(boundary)\r\n")
-//            body.appendString(string: "Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
-//            body.appendString(string: "\(value)\r\n")
-//        }
-//        
-//        body.appendString(string: "--\(boundary)\r\n")
-//        
-//        let mimetype = "image/jpg"
-//        
-//        let defFileName = "yourImageName.jpg"
-//        
-//     //   let imageData = Image UIImageJPEGRepresentation(yourImage, 1)
-//        
-//        body.appendString(string: "Content-Disposition: form-data; name=\"HelloWorld\"; filename=\"\(defFileName)\"\r\n")
-//        body.appendString(string: "Content-Type: \(mimetype)\r\n\r\n")
-//        body.append(imageData)
-//        body.appendString(string: "\r\n")
-//        
-//        body.appendString(string: "--\(boundary)--\r\n")
-//        
-//        return body
-//    }
     
     
     public static func getAllImagesRequest(_ completion: @escaping (AsyncResult<String>)->())  {

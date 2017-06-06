@@ -22,7 +22,7 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
             
             
            
-            Server.upload(imageData: imageData!, description: "megaDescription", completion: { (result) in
+            Server.upload(imageData: imageData!, imageLocation: imageLocation , description: "megaDescription", completion: { (result) in
                 switch(result){
                 case .Success(let responce):
                     print("Success!!!!!!!!")
@@ -64,7 +64,8 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
            // print((info[UIImagePickerControllerReferenceURL]) )
-            imageLocation = ((info[UIImagePickerControllerReferenceURL] as! NSURL).deletingPathExtension?.description)!
+            
+            imageLocation = Bundle.main.bundlePath  + ((info[UIImagePickerControllerReferenceURL] as! NSURL).path)!
             print(imageLocation)
             imageView.contentMode = .scaleAspectFit
             imageView.image = pickedImage
