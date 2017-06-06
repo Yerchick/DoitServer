@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CE2A1FF11EE2E8C300D68C44 /* ImagePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A1FF01EE2E8C300D68C44 /* ImagePhotoCell.swift */; };
+		CE2A1FF51EE2FBF800D68C44 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A1FF41EE2FBF800D68C44 /* CollectionViewController.swift */; };
+		CE2A1FF71EE5538600D68C44 /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A1FF61EE5538600D68C44 /* AddImageViewController.swift */; };
 		CEA87EAB1EE02FE3003397D1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAA1EE02FE3003397D1 /* SignInViewController.swift */; };
 		CEA87EAD1EE0305D003397D1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAC1EE0305D003397D1 /* SignUpViewController.swift */; };
 		CEA87EAF1EE03981003397D1 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAE1EE03981003397D1 /* ImagesView.swift */; };
@@ -23,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		CE2A1FF01EE2E8C300D68C44 /* ImagePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePhotoCell.swift; sourceTree = "<group>"; };
+		CE2A1FF41EE2FBF800D68C44 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		CE2A1FF61EE5538600D68C44 /* AddImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
 		CEA87EAA1EE02FE3003397D1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CEA87EAC1EE0305D003397D1 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CEA87EAE1EE03981003397D1 /* ImagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				CEA87EAA1EE02FE3003397D1 /* SignInViewController.swift */,
 				CEA87EAC1EE0305D003397D1 /* SignUpViewController.swift */,
 				CEA87EAE1EE03981003397D1 /* ImagesView.swift */,
+				CE2A1FF41EE2FBF800D68C44 /* CollectionViewController.swift */,
+				CE2A1FF61EE5538600D68C44 /* AddImageViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -186,8 +192,10 @@
 				CEA87EB71EE19B6A003397D1 /* ImagesHolder.swift in Sources */,
 				CE2A1FF11EE2E8C300D68C44 /* ImagePhotoCell.swift in Sources */,
 				CEB1F7311EDEAE3100752696 /* ViewController.swift in Sources */,
+				CE2A1FF51EE2FBF800D68C44 /* CollectionViewController.swift in Sources */,
 				CEB1F72F1EDEAE3100752696 /* AppDelegate.swift in Sources */,
 				CEA87EAD1EE0305D003397D1 /* SignUpViewController.swift in Sources */,
+				CE2A1FF71EE5538600D68C44 /* AddImageViewController.swift in Sources */,
 				CEA87EAB1EE02FE3003397D1 /* SignInViewController.swift in Sources */,
 				CEA87EB21EE05ECA003397D1 /* Server.swift in Sources */,
 				CEA87EAF1EE03981003397D1 /* ImagesView.swift in Sources */,

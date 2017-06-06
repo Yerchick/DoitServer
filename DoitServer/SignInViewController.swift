@@ -25,9 +25,8 @@ class SignInViewController: UIViewController {
                     print("Success! " + respondString)
                     Server.token = respondString
                     DispatchQueue.main.async {
-                        self.navigationController!.pushViewController(self.storyboard!.instantiateViewController(withIdentifier: "ImagesViewScene"), animated: true)
+                        self.navigationController!.pushViewController(self.storyboard!.instantiateViewController(withIdentifier: "CollectionView"), animated: true)
                     }
-                    
                     break
                 case .Failure(let error):
                     print("Failure! " + error!.localizedDescription)
