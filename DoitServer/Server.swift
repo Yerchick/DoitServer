@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Alamofire
 
 public enum AsyncResult<T>{
     case Success(T)
@@ -46,48 +46,63 @@ public class Server {
     }
     
     
-    public static func upload(imageData:Data, imageLocation: String, description desc:String, completion: @escaping (AsyncResult<String>)->())  {
+    public static func upload(imageData:Data, imageLocation: NSURL, description desc:String, completion: @escaping (AsyncResult<String>)->())  {
         let url = URL(string: "http://api.doitserver.in.ua/image")
-        let session = URLSession.shared
+       // let session = URLSession.shared
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.addValue(Server.token!, forHTTPHeaderField: "token")
-        
+        let imagePath = Bundle.main.bundlePath  + (imageLocation.path)!
         let hastag = ""
         let longitude = 1.233
         let latitude = 12.124
-        var postString = "image=" + imageLocation
-        postString += "&description=" + desc
-        postString += "&hashtag=" + hastag
-         postString += "&latitude=" + (latitude.description)
-        postString += "&longitude=" + (longitude.description)
+//        var postString = "image=" + imageLocation
+//        postString += "&description=" + desc
+//        postString += "&hashtag=" + hastag
+//         postString += "&latitude=" + (latitude.description)
+//        postString += "&longitude=" + (longitude.description)
+
+        let headers: HTTPHeaders = ["token":Server.token!]
+        
+        
+      Alamofire.upload(multipartFormData: { (multipartFormData) in
+        multipartFormData.append(imageData, withName: imageLocation.path!, fileName: "photo.jpg", mimeType: "image/jpg")
+        multipartFormData.append(imagePath.data(using: String.Encoding.utf8)!, withName: "image")
+        multipartFormData.append(desc.data(using: String.Encoding.utf8)!, withName: "description")
+        multipartFormData.append(hastag.data(using: String.Encoding.utf8)!, withName: "hashtag")
+        multipartFormData.append(latitude.description.data(using: String.Encoding.utf8)!, withName: "latitude")
+        multipartFormData.append(longitude.description.data(using: String.Encoding.utf8)!, withName: "longitude")
 
         
-       print(postString)
-        request.httpBody =  postString.data(using: String.Encoding.utf8)
-        session.dataTask(with: request)    { (data, response, error) in
-            if let data = data {
-                print("------------------------")
-                do{
-                    print("0------------------------")
-                    print(data)
-                    print("1------------------------")
-                    print(response)
-                    print(String(data: data, encoding: String.Encoding.utf8)!)
-                    print("2------------------------")
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                    print("3------------------------")
-                    completion(AsyncResult.Success((json as AnyObject).description))
-                    
-                    print(json)
-                }catch{
-                    completion(AsyncResult.Failure(error))
-                }
-            
-            }
-            
-        }.resume()
+      }, to: url!, method: .post, headers: headers) { (encodingResult) in
+        print(encodingResult)
+        }
+        
+//       print(postString)
+//        request.httpBody =  postString.data(using: String.Encoding.utf8)
+//        session.dataTask(with: request)    { (data, response, error) in
+//            if let data = data {
+//                print("------------------------")
+//                do{
+//                    print("0------------------------")
+//                    print(data)
+//                    print("1------------------------")
+//                    print(response)
+//                    print(String(data: data, encoding: String.Encoding.utf8)!)
+//                    print("2------------------------")
+//                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+//                    print(json)
+//                    print("3------------------------")
+//                    completion(AsyncResult.Success((json as AnyObject).description))
+//                    
+//                    print(json)
+//                }catch{
+//                    completion(AsyncResult.Failure(error))
+//                }
+//            
+//            }
+//            
+//        }.resume()
     }
     
     

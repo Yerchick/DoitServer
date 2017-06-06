@@ -10,7 +10,7 @@ import UIKit
 
 class AddImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
-    var imageLocation: String = ""
+    var imageLocation: NSURL? = nil
     
     @IBAction func uploadImage(_ sender: Any) {
         if(imageView.image != nil){
@@ -22,7 +22,7 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
             
             
            
-            Server.upload(imageData: imageData!, imageLocation: imageLocation , description: "megaDescription", completion: { (result) in
+            Server.upload(imageData: imageData!, imageLocation: imageLocation! , description: "megaDescription", completion: { (result) in
                 switch(result){
                 case .Success(let responce):
                     print("Success!!!!!!!!")
@@ -65,8 +65,8 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
             
            // print((info[UIImagePickerControllerReferenceURL]) )
             
-            imageLocation = Bundle.main.bundlePath  + ((info[UIImagePickerControllerReferenceURL] as! NSURL).path)!
-            print(imageLocation)
+            imageLocation = info[UIImagePickerControllerReferenceURL] as! NSURL
+           // print(imageLocation)
             imageView.contentMode = .scaleAspectFit
             imageView.image = pickedImage
             

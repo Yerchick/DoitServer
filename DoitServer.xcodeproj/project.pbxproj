@@ -21,7 +21,24 @@
 		CEB1F7341EDEAE3200752696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB1F7321EDEAE3200752696 /* Main.storyboard */; };
 		CEB1F7361EDEAE3200752696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB1F7351EDEAE3200752696 /* Assets.xcassets */; };
 		CEB1F7391EDEAE3200752696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB1F7371EDEAE3200752696 /* LaunchScreen.storyboard */; };
+		CEE97F891EE6FBEB00C765C7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; };
+		CEE97F8A1EE7009400C765C7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; };
+		CEE97F8B1EE7009400C765C7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CEE97F8C1EE7009400C765C7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CEE97F8B1EE7009400C765C7 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CE2A1FF01EE2E8C300D68C44 /* ImagePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePhotoCell.swift; sourceTree = "<group>"; };
@@ -40,6 +57,7 @@
 		CEB1F7351EDEAE3200752696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEB1F7381EDEAE3200752696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEB1F73A1EDEAE3200752696 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE97F891EE6FBEB00C765C7 /* Alamofire.framework in Frameworks */,
+				CEE97F8A1EE7009400C765C7 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +96,7 @@
 			children = (
 				CEB1F72D1EDEAE3100752696 /* DoitServer */,
 				CEB1F72C1EDEAE3100752696 /* Products */,
+				CEE97F851EE6F6A300C765C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +136,14 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		CEE97F851EE6F6A300C765C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,6 +154,7 @@
 				CEB1F7271EDEAE3100752696 /* Sources */,
 				CEB1F7281EDEAE3100752696 /* Frameworks */,
 				CEB1F7291EDEAE3100752696 /* Resources */,
+				CEE97F8C1EE7009400C765C7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -322,6 +352,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 436H7CD48C;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DoitServer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Yerchick.DoitServer;
@@ -335,6 +370,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 436H7CD48C;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DoitServer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Yerchick.DoitServer;
