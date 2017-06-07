@@ -26,7 +26,7 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
                 switch(result){
                 case .Success(let responce):
                     print("Success!!!!!!!!")
-                    
+                    self.navigationController?.performSegue(withIdentifier: "collectionView", sender: self)
                     break
                 case .Failure(_):
                     

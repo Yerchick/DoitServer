@@ -10,6 +10,12 @@
 		CE2A1FF11EE2E8C300D68C44 /* ImagePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A1FF01EE2E8C300D68C44 /* ImagePhotoCell.swift */; };
 		CE2A1FF51EE2FBF800D68C44 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A1FF41EE2FBF800D68C44 /* CollectionViewController.swift */; };
 		CE2A1FF71EE5538600D68C44 /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A1FF61EE5538600D68C44 /* AddImageViewController.swift */; };
+		CE50970A1EE83CBA00F19EB3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; };
+		CE50970C1EE83CCB00F19EB3 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */; };
+		CE50970D1EE83F5400F19EB3 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */; };
+		CE50970E1EE83F5400F19EB3 /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE5097101EE83F6F00F19EB3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; };
+		CE5097111EE83F6F00F19EB3 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEA87EAB1EE02FE3003397D1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAA1EE02FE3003397D1 /* SignInViewController.swift */; };
 		CEA87EAD1EE0305D003397D1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAC1EE0305D003397D1 /* SignUpViewController.swift */; };
 		CEA87EAF1EE03981003397D1 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAE1EE03981003397D1 /* ImagesView.swift */; };
@@ -21,19 +27,17 @@
 		CEB1F7341EDEAE3200752696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB1F7321EDEAE3200752696 /* Main.storyboard */; };
 		CEB1F7361EDEAE3200752696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB1F7351EDEAE3200752696 /* Assets.xcassets */; };
 		CEB1F7391EDEAE3200752696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB1F7371EDEAE3200752696 /* LaunchScreen.storyboard */; };
-		CEE97F891EE6FBEB00C765C7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; };
-		CEE97F8A1EE7009400C765C7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; };
-		CEE97F8B1EE7009400C765C7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CEE97F8C1EE7009400C765C7 /* Embed Frameworks */ = {
+		CE50970F1EE83F5400F19EB3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CEE97F8B1EE7009400C765C7 /* Alamofire.framework in Embed Frameworks */,
+				CE50970E1EE83F5400F19EB3 /* AlamofireImage.framework in Embed Frameworks */,
+				CE5097111EE83F6F00F19EB3 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,6 +48,7 @@
 		CE2A1FF01EE2E8C300D68C44 /* ImagePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePhotoCell.swift; sourceTree = "<group>"; };
 		CE2A1FF41EE2FBF800D68C44 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		CE2A1FF61EE5538600D68C44 /* AddImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
+		CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		CEA87EAA1EE02FE3003397D1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CEA87EAC1EE0305D003397D1 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CEA87EAE1EE03981003397D1 /* ImagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
@@ -65,8 +70,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE97F891EE6FBEB00C765C7 /* Alamofire.framework in Frameworks */,
-				CEE97F8A1EE7009400C765C7 /* Alamofire.framework in Frameworks */,
+				CE50970D1EE83F5400F19EB3 /* AlamofireImage.framework in Frameworks */,
+				CE50970C1EE83CCB00F19EB3 /* AlamofireImage.framework in Frameworks */,
+				CE50970A1EE83CBA00F19EB3 /* Alamofire.framework in Frameworks */,
+				CE5097101EE83F6F00F19EB3 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +146,7 @@
 		CEE97F851EE6F6A300C765C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */,
 				CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */,
 			);
 			name = Frameworks;
@@ -154,7 +162,7 @@
 				CEB1F7271EDEAE3100752696 /* Sources */,
 				CEB1F7281EDEAE3100752696 /* Frameworks */,
 				CEB1F7291EDEAE3100752696 /* Resources */,
-				CEE97F8C1EE7009400C765C7 /* Embed Frameworks */,
+				CE50970F1EE83F5400F19EB3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

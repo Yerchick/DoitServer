@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 
 public enum AsyncResult<T>{
     case Success(T)
@@ -66,43 +67,29 @@ public class Server {
         
         
       Alamofire.upload(multipartFormData: { (multipartFormData) in
-        multipartFormData.append(imageData, withName: imageLocation.path!, fileName: "photo.jpg", mimeType: "image/jpg")
-        multipartFormData.append(imagePath.data(using: String.Encoding.utf8)!, withName: "image")
+        multipartFormData.append(imageData, withName: "image", fileName: "photo.jpg", mimeType: "image/jpg")
+       // multipartFormData.append(imagePath.data(using: String.Encoding.utf8)!, withName: "image")
         multipartFormData.append(desc.data(using: String.Encoding.utf8)!, withName: "description")
         multipartFormData.append(hastag.data(using: String.Encoding.utf8)!, withName: "hashtag")
         multipartFormData.append(latitude.description.data(using: String.Encoding.utf8)!, withName: "latitude")
         multipartFormData.append(longitude.description.data(using: String.Encoding.utf8)!, withName: "longitude")
 
         
-      }, to: url!, method: .post, headers: headers) { (encodingResult) in
-        print(encodingResult)
+      }, to: url!, method: .post, headers: headers, encodingCompletion: { (result) in
+        switch(result){
+        case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
+            upload.responseJSON(completionHandler: { (uploadResponse) in
+                //self.
+                print(uploadResponse)
+            })
+        case .failure(let uploadError):
+            
+            print("error" + uploadError.localizedDescription)
+            
         }
+        })
         
-//       print(postString)
-//        request.httpBody =  postString.data(using: String.Encoding.utf8)
-//        session.dataTask(with: request)    { (data, response, error) in
-//            if let data = data {
-//                print("------------------------")
-//                do{
-//                    print("0------------------------")
-//                    print(data)
-//                    print("1------------------------")
-//                    print(response)
-//                    print(String(data: data, encoding: String.Encoding.utf8)!)
-//                    print("2------------------------")
-//                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                    print(json)
-//                    print("3------------------------")
-//                    completion(AsyncResult.Success((json as AnyObject).description))
-//                    
-//                    print(json)
-//                }catch{
-//                    completion(AsyncResult.Failure(error))
-//                }
-//            
-//            }
-//            
-//        }.resume()
+
     }
     
     

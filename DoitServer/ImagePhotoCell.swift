@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ImagePhotoCell : UICollectionViewCell {
     
@@ -17,14 +18,14 @@ class ImagePhotoCell : UICollectionViewCell {
     @IBOutlet var adressLabel: UILabel!
     
     func setImageWith(url: URL) {
-        print("Download Started")
-        ImagesHolder.sharedInstance.getTemplateFromUrl(url: url) { (data, response, error)  in
-            guard let data = data, error == nil else { return }
-            print("Download Finished " + data.debugDescription)
-            DispatchQueue.main.async() { () -> Void in
-                self.imageView?.image = UIImage(data: data)
-            }
-        }
+//        print("Download Started")
+//        ImagesHolder.sharedInstance.getTemplateFromUrl(url: url) { (data, response, error)  in
+//            guard let data = data, error == nil else { return }
+//            print("Download Finished " + data.debugDescription)
+//            DispatchQueue.main.async() { () -> Void in
+//                self.imageView?.image = UIImage(data: data)
+//            }
+//        }
     }
     
     func setAdress(label: String){

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class CollectionViewController: UICollectionViewController {
 
@@ -66,7 +67,8 @@ class CollectionViewController: UICollectionViewController {
         let imageSmallLocation = image.smallImagePath
         let imageURL = URL(string: imageSmallLocation)!
         print ("Loadind with Url " + imageURL.debugDescription)
-        cell.setImageWith(url: imageURL)
+     //   cell.setImageWith(url: imageURL)
+        cell.imageView?.af_setImage(withURL: imageURL)
         cell.setAdress(label: (image.parameters?.adress)!)
         cell.setWeather(label: (image.parameters?.weather)!)
         
