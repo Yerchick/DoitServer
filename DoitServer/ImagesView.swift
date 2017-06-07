@@ -35,7 +35,7 @@ import UIKit
             //  print(response?.suggestedFilename ?? url.lastPathComponent)
             print("Download Finished")
             DispatchQueue.main.async() { () -> Void in
-                cell.imageView.image = UIImage(data: data)
+                cell.imageView?.image = UIImage(data: data)
                 
             }
         }

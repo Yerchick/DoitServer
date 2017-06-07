@@ -12,6 +12,7 @@ struct Parameters {
     var latitude: Float
     var longitude: Float
     var weather: String
+    var adress: String
 }
 
 class Image {
@@ -23,13 +24,6 @@ class Image {
     var description: String = ""
     var hashtag : String = ""
     var imageView : Image? = nil
-//    init(withPathToBigImage bigPath: String, created dateCreated: String,withId id:integer_t, parameters params:Parameters, andSmallImagePath smallImage:String){
-//        bigImagePath = bigPath
-//        created = dateCreated
-//        self.id = id
-//        parameters = params
-//        smallImagePath = smallImage
-//    }
     
     init?(json:[String:Any]){
         print("initing image")
@@ -50,10 +44,13 @@ class Image {
                 print("Error initing image")
                 return nil
         }
+        var adress = json["adress"] as? String
+        if(adress == nil){adress = ""}
+        
         self.bigImagePath = bigImagePath
         self.created = created
         self.id = id
-        self.parameters = Parameters.init(latitude: latitude, longitude: longitude, weather: weather)
+        self.parameters = Parameters.init(latitude: latitude, longitude: longitude, weather: weather, adress: adress!)
         self.smallImagePath = smallImagePath
         ImagesHolder.sharedInstance.LoadedImages.append(self)
         print(ImagesHolder.sharedInstance.LoadedImages.count)

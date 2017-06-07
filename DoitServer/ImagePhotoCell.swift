@@ -10,8 +10,11 @@ import UIKit
 
 class ImagePhotoCell : UICollectionViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
-
+    @IBOutlet var imageView: UIImageView?
+    
+    @IBOutlet var weatherLabel: UILabel!
+    
+    @IBOutlet var adressLabel: UILabel!
     
     func setImageWith(url: URL) {
         print("Download Started")
@@ -19,10 +22,17 @@ class ImagePhotoCell : UICollectionViewCell {
             guard let data = data, error == nil else { return }
             print("Download Finished " + data.debugDescription)
             DispatchQueue.main.async() { () -> Void in
-                self.imageView.image = UIImage(data: data)
-                
+                self.imageView?.image = UIImage(data: data)
             }
         }
+    }
+    
+    func setAdress(label: String){
+        adressLabel.text = label
+    }
+    
+    func setWeather(label: String){
+        weatherLabel.text = label
     }
     
 }

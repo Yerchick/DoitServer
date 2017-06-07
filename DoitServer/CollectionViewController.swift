@@ -8,31 +8,40 @@
 
 import UIKit
 
-class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CollectionViewController: UICollectionViewController {
 
     fileprivate let reuseIdentifier = "newCell"
     fileprivate let itemsPerRow: CGFloat = 2
     fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
+    @IBAction func addImage(_ sender: UIBarButtonItem) {
+     //   self.performSegue(withIdentifier: "addImage", sender: self)
+    }
     
+    @IBAction func showGif(_ sender: UIBarButtonItem) {
+        
+    }
 
-    
-    
-    @IBOutlet weak var collectionView: ImagesView!
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       // getAllImages()
+    }
     
     override func viewDidLoad() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
         super.viewDidLoad()
+        //navigationItem.hidesBackButton = true
         print("CollectionViewController loaded")
-        // Do any additional setup after loading the view.
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        getAllImages()
+      //  self.collectionView?.register(ImagePhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+    
+    func getAllImages(){
         Server.getAllImagesRequest( {(result) in
             switch result
             {
             case .Success( _):
                 //print("Success! " + respondString)
-                self.collectionView.reloadData()
+                self.collectionView?.reloadData()
                 break
             case .Failure( _):
                 //print("Failure! " + error!.localizedDescription)
@@ -49,16 +58,18 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ImagePhotoCell
         print("Index path"  + indexPath.item.description)
         
-        let imageSmallLocation = ImagesHolder.sharedInstance.LoadedImages[indexPath.item].smallImagePath
+        let image = ImagesHolder.sharedInstance.LoadedImages[indexPath.item]
+        let imageSmallLocation = image.smallImagePath
         let imageURL = URL(string: imageSmallLocation)!
         print ("Loadind with Url " + imageURL.debugDescription)
         cell.setImageWith(url: imageURL)
-
-        //self.collectionView.reloadData()
+        cell.setAdress(label: (image.parameters?.adress)!)
+        cell.setWeather(label: (image.parameters?.weather)!)
+        
         return cell
     }
     
@@ -71,19 +82,14 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  ImagesHolder.sharedInstance.LoadedImages.count
     }
-    
-//    override func numberOfItems(inSection section: Int) -> Int {
-//        print("number of items")
-//        return  ImagesHolder.sharedInstance.LoadedImages.count
-//    }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //2
+        
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
@@ -97,22 +103,12 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         return sectionInsets
     }
     
-    //4
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
