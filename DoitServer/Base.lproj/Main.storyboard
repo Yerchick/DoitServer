@@ -79,6 +79,7 @@
                                         <state key="normal" title="Continue"/>
                                         <connections>
                                             <action selector="onPostActionClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kmG-AH-AWQ"/>
+                                            <action selector="signUp:" destination="E36-f6-Twe" eventType="touchUpInside" id="siR-JR-D20"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -117,6 +118,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="avatarImage" destination="gHy-8i-XIN" id="OYh-04-7Nr"/>
+                        <outlet property="passwordField" destination="Jma-Yh-qCN" id="9p2-sA-fGr"/>
+                        <outlet property="userEmail" destination="OkU-vm-Crf" id="use-wJ-iW0"/>
+                        <outlet property="userName" destination="Sj0-KY-ro7" id="WvS-cE-UNV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iki-v7-pI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -397,6 +404,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vy2-P5-YBj"/>
+        <segue reference="Zng-xk-s3w"/>
     </inferredMetricsTieBreakers>
 </document>

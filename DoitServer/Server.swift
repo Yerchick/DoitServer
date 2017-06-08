@@ -46,29 +46,48 @@ public class Server {
             }.resume()
     }
     
+    public static func sendSignUpRequest(withImage imageData:Data, userName:String?, email:String, andPassword password:String, completion: @escaping (AsyncResult<String>)->())  {
+        let url = URL(string: "http://api.doitserver.in.ua/create")
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(imageData, withName: "avatar", fileName: "photo.jpg", mimeType: "image/jpg")
+            if(userName != nil){
+            multipartFormData.append((userName?.data(using: String.Encoding.utf8)!)!, withName: "username")
+            }
+            multipartFormData.append(email.data(using: String.Encoding.utf8)!, withName: "email")
+            multipartFormData.append(password.description.data(using: String.Encoding.utf8)!, withName: "password")
+        }, to: url!, method: .post, headers: [:], encodingCompletion: { (result) in
+           
+            switch(result){
+            case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
+                
+                upload.responseJSON(completionHandler: { (uploadResponse) in
+                   // print("Server debug: " + uploadResponse.result.value)
+                    completion(AsyncResult.Success(uploadResponse.result.debugDescription))
+                })
+            case .failure(let uploadError):
+                print("Server debug Error: " + uploadError.localizedDescription)
+                completion(AsyncResult.Failure(uploadError))
+            }
+        })
+
+    }
+    
     
     public static func upload(imageData:Data, imageLocation: NSURL, description desc:String, completion: @escaping (AsyncResult<String>)->())  {
         let url = URL(string: "http://api.doitserver.in.ua/image")
        // let session = URLSession.shared
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
-        request.addValue(Server.token!, forHTTPHeaderField: "token")
-        let imagePath = Bundle.main.bundlePath  + (imageLocation.path)!
+        //request.addValue(Server.token!, forHTTPHeaderField: "token")
         let hastag = ""
         let longitude = 1.233
         let latitude = 12.124
-//        var postString = "image=" + imageLocation
-//        postString += "&description=" + desc
-//        postString += "&hashtag=" + hastag
-//         postString += "&latitude=" + (latitude.description)
-//        postString += "&longitude=" + (longitude.description)
-
         let headers: HTTPHeaders = ["token":Server.token!]
         
         
       Alamofire.upload(multipartFormData: { (multipartFormData) in
         multipartFormData.append(imageData, withName: "image", fileName: "photo.jpg", mimeType: "image/jpg")
-       // multipartFormData.append(imagePath.data(using: String.Encoding.utf8)!, withName: "image")
         multipartFormData.append(desc.data(using: String.Encoding.utf8)!, withName: "description")
         multipartFormData.append(hastag.data(using: String.Encoding.utf8)!, withName: "hashtag")
         multipartFormData.append(latitude.description.data(using: String.Encoding.utf8)!, withName: "latitude")

@@ -17,7 +17,7 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
             
             
             
-            let imageData = UIImageJPEGRepresentation(imageView.image!, 1)
+            let imageData = UIImageJPEGRepresentation(imageView.image!, 0.3)
             if imageData == nil {return}
             
             
@@ -62,16 +62,9 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
-           // print((info[UIImagePickerControllerReferenceURL]) )
-            
-            imageLocation = info[UIImagePickerControllerReferenceURL] as! NSURL
-           // print(imageLocation)
             imageView.contentMode = .scaleAspectFit
             imageView.image = pickedImage
-            
         }
-        
         dismiss(animated: true, completion: nil)
     }
     
@@ -82,7 +75,6 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
     {
         _ = tapGestureRecognizer.view as! UIImageView
         selectImage()
-        // Upload image
     }
 
     override func didReceiveMemoryWarning() {
