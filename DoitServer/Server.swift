@@ -20,6 +20,7 @@ public class Server {
     
     public static var token: String? = nil
     
+    
     public static func sendSignInRequest(withEmail email:String, andPassword password:String, completion: @escaping (AsyncResult<String>)->())  {
         let url = URL(string: "http://api.doitserver.in.ua/login")
         //var result: String = ""
@@ -46,7 +47,7 @@ public class Server {
             }.resume()
     }
     
-    public static func sendSignUpRequest(withImage imageData:Data, userName:String?, email:String, andPassword password:String, completion: @escaping (AsyncResult<String>)->())  {
+    public static func sendSignUpRequest(withImage imageData:Data, userName:String?, email:String, andPassword password:String, completion: @escaping (AsyncResult<[String:AnyObject]>)->())  {
         let url = URL(string: "http://api.doitserver.in.ua/create")
         
         Alamofire.upload(multipartFormData: { (multipartFormData) in
@@ -63,7 +64,10 @@ public class Server {
                 
                 upload.responseJSON(completionHandler: { (uploadResponse) in
                    // print("Server debug: " + uploadResponse.result.value)
-                    completion(AsyncResult.Success(uploadResponse.result.debugDescription))
+                    let responseJson = uploadResponse.result.value as! [String: AnyObject]
+                   // print("Debug response as JSON: \n" + (responseJson).description)
+                    
+                    completion(AsyncResult.Success(responseJson))
                 })
             case .failure(let uploadError):
                 print("Server debug Error: " + uploadError.localizedDescription)
@@ -74,13 +78,13 @@ public class Server {
     }
     
     
-    public static func upload(imageData:Data, imageLocation: NSURL, description desc:String, completion: @escaping (AsyncResult<String>)->())  {
+    public static func upload(imageData:Data, description desc:String?, hashtag: String?, completion: @escaping (AsyncResult<[String: AnyObject]>)->())  {
         let url = URL(string: "http://api.doitserver.in.ua/image")
        // let session = URLSession.shared
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         //request.addValue(Server.token!, forHTTPHeaderField: "token")
-        let hastag = ""
+        let hastags : String! = hashtag == nil ? "": hashtag!
         let longitude = 1.233
         let latitude = 12.124
         let headers: HTTPHeaders = ["token":Server.token!]
@@ -88,8 +92,8 @@ public class Server {
         
       Alamofire.upload(multipartFormData: { (multipartFormData) in
         multipartFormData.append(imageData, withName: "image", fileName: "photo.jpg", mimeType: "image/jpg")
-        multipartFormData.append(desc.data(using: String.Encoding.utf8)!, withName: "description")
-        multipartFormData.append(hastag.data(using: String.Encoding.utf8)!, withName: "hashtag")
+        multipartFormData.append(((desc == nil ? "" : desc)?.data(using: String.Encoding.utf8)!)!, withName: "description")
+        multipartFormData.append(hastags.data(using: String.Encoding.utf8)!, withName: "hashtag")
         multipartFormData.append(latitude.description.data(using: String.Encoding.utf8)!, withName: "latitude")
         multipartFormData.append(longitude.description.data(using: String.Encoding.utf8)!, withName: "longitude")
 
@@ -99,7 +103,8 @@ public class Server {
         case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
             upload.responseJSON(completionHandler: { (uploadResponse) in
                 //self.
-                print(uploadResponse)
+                 let responseJson = uploadResponse.result.value as! [String: AnyObject]
+                completion(AsyncResult.Success(responseJson))
             })
         case .failure(let uploadError):
             
@@ -127,9 +132,11 @@ public class Server {
                     print("---------")
                     if let dict = json as? [String : Any?]{
                         if let images = dict["images"] as? [Any] {
-                            print((images.first! as! [String: Any])["bigImagePath"] as! String)
+                            if(images.count > 0){
+                           // print((images.first! as! [String: Any])["bigImagePath"] as! String)
                             ImagesHolder.sharedInstance.createImages(withArray: images)
-                            completion(AsyncResult.Success(""))
+                            }
+                             completion(AsyncResult.Success(""))
                         }
                     }
                 }catch{
@@ -138,6 +145,36 @@ public class Server {
         }
             }.resume()
     }
+    
+    public static func getGif(_ completion: @escaping (AsyncResult<String>)->())  {
+        let url = URL(string: "http://api.doitserver.in.ua/gif")
+        let session = URLSession.shared
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.addValue(token!, forHTTPHeaderField: "token")
+        session.dataTask(with: request) { (data, response, error) -> Void in
+            if let data = data {
+                print("------------------------")
+                do{
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                    print("---------")
+                    if let dict = json as? [String : Any?]{
+                        if let images = dict["images"] as? [Any] {
+                            if(images.count > 0){
+                                // print((images.first! as! [String: Any])["bigImagePath"] as! String)
+                                ImagesHolder.sharedInstance.createImages(withArray: images)
+                            }
+                            completion(AsyncResult.Success(""))
+                        }
+                    }
+                }catch{
+                    completion(AsyncResult.Failure(error))
+                }
+            }
+            }.resume()
+    }
+
 
 
     

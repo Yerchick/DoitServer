@@ -10,7 +10,9 @@ import UIKit
 
 class AddImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
-    var imageLocation: NSURL? = nil
+   // var imageLocation: NSURL? = nil
+    @IBOutlet var descriptionFiled: UITextField!
+    @IBOutlet var hashTagField: UITextField!
     
     @IBAction func uploadImage(_ sender: Any) {
         if(imageView.image != nil){
@@ -22,11 +24,12 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
             
             
            
-            Server.upload(imageData: imageData!, imageLocation: imageLocation! , description: "megaDescription", completion: { (result) in
+            Server.upload(imageData: imageData!, description: descriptionFiled.text, hashtag: hashTagField.text, completion: { (result) in
                 switch(result){
                 case .Success(let responce):
-                    print("Success!!!!!!!!")
-                    self.navigationController?.performSegue(withIdentifier: "collectionView", sender: self)
+                    DispatchQueue.main.async {
+                        self.navigationController?.performSegue(withIdentifier: "collectionView", sender: self)
+                    }
                     break
                 case .Failure(_):
                     

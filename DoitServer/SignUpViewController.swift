@@ -26,15 +26,13 @@ class SignUpViewController : UIViewController{
         
         Server.sendSignUpRequest(withImage: imageData!, userName: userName.text, email: userEmail.text!, andPassword: passwordField.text!) { (asyncResult) in
             switch asyncResult {
-            case .Success(let data):
-                print(data)
-              //  let json = try JSONSerialization.jsonObject(with: data, options: [])
-              //  print(json)
-//                if let dict = json as? [String : String]{
-//                    if let number = dict["token"] {
-//                       // completion(AsyncResult.Success(number))
-//                    }
-//                }
+            case .Success(let dict):
+                    if let token = dict["token"] {
+                       Server.token = token as? String
+                        DispatchQueue.main.async {
+                            self.navigationController!.pushViewController(self.storyboard!.instantiateViewController(withIdentifier:"collectionView"), animated: true)
+                        }
+                    }
                 break;
             case .Failure(let error):
                 print(error)
@@ -47,6 +45,7 @@ class SignUpViewController : UIViewController{
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        avatarImage.clipsToBounds = true
         avatarImage.layer.cornerRadius = avatarImage.frame.height/2
     }
     
@@ -69,17 +68,12 @@ class SignUpViewController : UIViewController{
         present(imagePicker, animated: true, completion: nil)
     }
 
-    
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-
 }
 
 extension SignUpViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            avatarImage.contentMode = .scaleAspectFit
             avatarImage.image = pickedImage
         }
         dismiss(animated: true, completion: nil)
