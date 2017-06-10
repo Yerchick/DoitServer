@@ -47,6 +47,7 @@ class SignUpViewController : UIViewController{
         super.viewWillLayoutSubviews()
         avatarImage.clipsToBounds = true
         avatarImage.layer.cornerRadius = avatarImage.frame.height/2
+        
     }
     
     override func viewDidLoad() {
