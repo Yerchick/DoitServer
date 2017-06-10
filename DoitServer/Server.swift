@@ -103,7 +103,6 @@ public class Server {
         switch(result){
         case .success(request: let upload, streamingFromDisk: _, streamFileURL: _):
             upload.responseJSON(completionHandler: { (uploadResponse) in
-                //self.
                  let responseJson = uploadResponse.result.value as! [String: AnyObject]
                 completion(AsyncResult.Success(responseJson))
             })
@@ -119,6 +118,7 @@ public class Server {
     
     
     public static func getAllImagesRequest(_ completion: @escaping (AsyncResult<String>)->())  {
+        
         let url = URL(string: "http://api.doitserver.in.ua/all")
         let session = URLSession.shared
         var request = URLRequest(url: url!)
@@ -126,16 +126,12 @@ public class Server {
         request.addValue(token!, forHTTPHeaderField: "token")
         session.dataTask(with: request) { (data, response, error) -> Void in
             if let data = data {
-                print("------------------------")
                 do{
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                    print("---------")
                     if let dict = json as? [String : Any?]{
                         if let images = dict["images"] as? [Any] {
                             if(images.count > 0){
-                           // print((images.first! as! [String: Any])["bigImagePath"] as! String)
-                            ImagesHolder.sharedInstance.createImages(withArray: images)
+                                ImagesHolder.sharedInstance.createImages(withArray: images)
                             }
                              completion(AsyncResult.Success(""))
                         }
@@ -155,16 +151,11 @@ public class Server {
         request.addValue(token!, forHTTPHeaderField: "token")
         session.dataTask(with: request) { (data, response, error) -> Void in
             if let data = data {
-                print("------------------------")
                 do{
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                    print("---------")
-                    if let dict = json as? [String : AnyObject]{
-                        
+                        if let dict = json as? [String : AnyObject]{
                         completion(AsyncResult.Success(dict))
                     }
-
                 }catch{
                     completion(AsyncResult.Failure(error))
                 }

@@ -1,3 +1,4 @@
 github "Alamofire/Alamofire" "4.4.0"
 github "Alamofire/AlamofireImage" "3.2.0"
 github "Flipboard/FLAnimatedImage" "1.0.12"
+github "SVProgressHUD/SVProgressHUD" "2.1.2"

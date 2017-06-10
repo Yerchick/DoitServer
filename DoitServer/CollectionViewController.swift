@@ -9,6 +9,7 @@
 import UIKit
 import AlamofireImage
 import FLAnimatedImage
+import SVProgressHUD
 
 class CollectionViewController: UICollectionViewController {
 
@@ -40,25 +41,30 @@ class CollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        // getAllImages()
+        getAllImages()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //navigationItem.hidesBackButton = true
         print("CollectionViewController loaded")
-        getAllImages()
+        
+        
       //  self.collectionView?.register(ImagePhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     func getAllImages(){
+        SVProgressHUD.show()
         Server.getAllImagesRequest( {(result) in
             switch result
             {
             case .Success( _):
+                SVProgressHUD.dismiss()
                 //print("Success! " + respondString)
                 self.collectionView?.reloadData()
                 break
-            case .Failure( _):
+            case .Failure(let error):
+                SVProgressHUD.showError(withStatus: error?.localizedDescription)
                 //print("Failure! " + error!.localizedDescription)
                 break
             }
@@ -83,6 +89,11 @@ class CollectionViewController: UICollectionViewController {
         print ("Loadind with Url " + imageURL.debugDescription)
      //   cell.setImageWith(url: imageURL)
         cell.imageView?.af_setImage(withURL: imageURL)
+
+        SVProgressHUD.show()
+        cell.imageView?.af_setImage(withURL: imageURL, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.global(), imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: { (newImage) in
+            SVProgressHUD.dismiss()
+        })
         cell.setAdress(label: (image.parameters?.adress)!)
         cell.setWeather(label: (image.parameters?.weather)!)
         
