@@ -11,11 +11,13 @@
 		CE2A1FF51EE2FBF800D68C44 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A1FF41EE2FBF800D68C44 /* CollectionViewController.swift */; };
 		CE2A1FF71EE5538600D68C44 /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A1FF61EE5538600D68C44 /* AddImageViewController.swift */; };
 		CE50970A1EE83CBA00F19EB3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; };
-		CE50970C1EE83CCB00F19EB3 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */; };
 		CE50970D1EE83F5400F19EB3 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */; };
 		CE50970E1EE83F5400F19EB3 /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CE5097101EE83F6F00F19EB3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; };
 		CE5097111EE83F6F00F19EB3 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE6AA4DA1EEC067D00DA8A5F /* FLAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6AA4D91EEC067D00DA8A5F /* FLAnimatedImage.framework */; };
+		CE6AA4DB1EEC067D00DA8A5F /* FLAnimatedImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE6AA4D91EEC067D00DA8A5F /* FLAnimatedImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE6AA4DD1EEC0E3D00DA8A5F /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AA4DC1EEC0E3D00DA8A5F /* PopoverViewController.swift */; };
+		CE6AA4DF1EEC189900DA8A5F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AA4DE1EEC189900DA8A5F /* Settings.swift */; };
 		CEA87EAB1EE02FE3003397D1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAA1EE02FE3003397D1 /* SignInViewController.swift */; };
 		CEA87EAD1EE0305D003397D1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAC1EE0305D003397D1 /* SignUpViewController.swift */; };
 		CEA87EAF1EE03981003397D1 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAE1EE03981003397D1 /* ImagesView.swift */; };
@@ -37,6 +39,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				CE50970E1EE83F5400F19EB3 /* AlamofireImage.framework in Embed Frameworks */,
+				CE6AA4DB1EEC067D00DA8A5F /* FLAnimatedImage.framework in Embed Frameworks */,
 				CE5097111EE83F6F00F19EB3 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -49,6 +52,9 @@
 		CE2A1FF41EE2FBF800D68C44 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		CE2A1FF61EE5538600D68C44 /* AddImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
 		CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		CE6AA4D91EEC067D00DA8A5F /* FLAnimatedImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAnimatedImage.framework; path = Carthage/Build/iOS/FLAnimatedImage.framework; sourceTree = "<group>"; };
+		CE6AA4DC1EEC0E3D00DA8A5F /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		CE6AA4DE1EEC189900DA8A5F /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CEA87EAA1EE02FE3003397D1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CEA87EAC1EE0305D003397D1 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CEA87EAE1EE03981003397D1 /* ImagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
@@ -71,9 +77,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE50970D1EE83F5400F19EB3 /* AlamofireImage.framework in Frameworks */,
-				CE50970C1EE83CCB00F19EB3 /* AlamofireImage.framework in Frameworks */,
+				CE6AA4DA1EEC067D00DA8A5F /* FLAnimatedImage.framework in Frameworks */,
 				CE50970A1EE83CBA00F19EB3 /* Alamofire.framework in Frameworks */,
-				CE5097101EE83F6F00F19EB3 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,19 +88,20 @@
 		CEA87EB01EE05E9A003397D1 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				CEA87EB11EE05ECA003397D1 /* Server.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
 		};
-		CEA87EB31EE18E8E003397D1 /* Core */ = {
+		CEA87EB31EE18E8E003397D1 /* Module */ = {
 			isa = PBXGroup;
 			children = (
 				CEA87EB41EE18EA0003397D1 /* Image.swift */,
 				CEA87EB61EE19B6A003397D1 /* ImagesHolder.swift */,
 				CE2A1FF01EE2E8C300D68C44 /* ImagePhotoCell.swift */,
+				CEA87EB11EE05ECA003397D1 /* Server.swift */,
+				CE6AA4DE1EEC189900DA8A5F /* Settings.swift */,
 			);
-			name = Core;
+			name = Module;
 			sourceTree = "<group>";
 		};
 		CEB1F7221EDEAE3100752696 = {
@@ -118,7 +124,7 @@
 		CEB1F72D1EDEAE3100752696 /* DoitServer */ = {
 			isa = PBXGroup;
 			children = (
-				CEA87EB31EE18E8E003397D1 /* Core */,
+				CEA87EB31EE18E8E003397D1 /* Module */,
 				CEA87EB01EE05E9A003397D1 /* API */,
 				CEBF5B231EDEF4AF00C0C6AE /* ViewControllers */,
 				CEB1F72E1EDEAE3100752696 /* AppDelegate.swift */,
@@ -139,6 +145,7 @@
 				CEA87EAE1EE03981003397D1 /* ImagesView.swift */,
 				CE2A1FF41EE2FBF800D68C44 /* CollectionViewController.swift */,
 				CE2A1FF61EE5538600D68C44 /* AddImageViewController.swift */,
+				CE6AA4DC1EEC0E3D00DA8A5F /* PopoverViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 		CEE97F851EE6F6A300C765C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE6AA4D91EEC067D00DA8A5F /* FLAnimatedImage.framework */,
 				CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */,
 				CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */,
 			);
@@ -228,8 +236,10 @@
 			files = (
 				CEA87EB51EE18EA0003397D1 /* Image.swift in Sources */,
 				CEA87EB71EE19B6A003397D1 /* ImagesHolder.swift in Sources */,
+				CE6AA4DF1EEC189900DA8A5F /* Settings.swift in Sources */,
 				CE2A1FF11EE2E8C300D68C44 /* ImagePhotoCell.swift in Sources */,
 				CEB1F7311EDEAE3100752696 /* ViewController.swift in Sources */,
+				CE6AA4DD1EEC0E3D00DA8A5F /* PopoverViewController.swift in Sources */,
 				CE2A1FF51EE2FBF800D68C44 /* CollectionViewController.swift in Sources */,
 				CEB1F72F1EDEAE3100752696 /* AppDelegate.swift in Sources */,
 				CEA87EAD1EE0305D003397D1 /* SignUpViewController.swift in Sources */,

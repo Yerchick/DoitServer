@@ -146,7 +146,7 @@ public class Server {
             }.resume()
     }
     
-    public static func getGif(_ completion: @escaping (AsyncResult<String>)->())  {
+    public static func getGif(_ completion: @escaping (AsyncResult<[String:AnyObject]>)->())  {
         let url = URL(string: "http://api.doitserver.in.ua/gif")
         let session = URLSession.shared
         var request = URLRequest(url: url!)
@@ -159,15 +159,11 @@ public class Server {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
                     print(json)
                     print("---------")
-                    if let dict = json as? [String : Any?]{
-                        if let images = dict["images"] as? [Any] {
-                            if(images.count > 0){
-                                // print((images.first! as! [String: Any])["bigImagePath"] as! String)
-                                ImagesHolder.sharedInstance.createImages(withArray: images)
-                            }
-                            completion(AsyncResult.Success(""))
-                        }
+                    if let dict = json as? [String : AnyObject]{
+                        
+                        completion(AsyncResult.Success(dict))
                     }
+
                 }catch{
                     completion(AsyncResult.Failure(error))
                 }
@@ -175,7 +171,7 @@ public class Server {
             }.resume()
     }
 
-
+    
 
     
 }

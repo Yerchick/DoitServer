@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import FLAnimatedImage
 
 class CollectionViewController: UICollectionViewController {
 
@@ -20,7 +21,20 @@ class CollectionViewController: UICollectionViewController {
     }
     
     @IBAction func showGif(_ sender: UIBarButtonItem) {
-        
+        Server.getGif { (result) in
+            switch result {
+            case .Success(let resultDict):
+                print("Gif result success response: " + resultDict.description)
+                let gifLocation = resultDict["gif"] as! String
+                Settings.gifLocation = gifLocation
+                self.showGif()
+                break
+            case .Failure(let error):
+                
+                break
+            
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -114,6 +128,29 @@ class CollectionViewController: UICollectionViewController {
 
 }
 
-
-
-
+extension CollectionViewController: UIPopoverPresentationControllerDelegate{
+    
+    func showGif(){
+        print("showing GIF")
+        let popoverContent = (self.storyboard?.instantiateViewController(withIdentifier: "popover"))! as! PopoverViewController
+        let nav = UINavigationController(rootViewController: popoverContent)
+        nav.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover = nav.popoverPresentationController
+        popoverContent.preferredContentSize = CGSize.init(width: 200, height: 200)
+        popover?.delegate = self
+        popover?.sourceView = self.view
+        popover?.sourceRect = CGRect.init(x: view.bounds.width/2 , y: view.bounds.height/2, width: 0, height: 0)
+        
+        do{
+            popoverContent.image = try FLAnimatedImage.init(animatedGIFData: Data.init(contentsOf: URL.init(string: Settings.gifLocation!)!))
+        }catch let errorr{
+            print("error" + errorr.localizedDescription)
+        }
+        
+       self.present(nav, animated: true, completion: nil)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+}
