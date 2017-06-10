@@ -8,8 +8,12 @@
 
 import Foundation
 
-
 class Settings {
     public static var gifLocation: String?
+    public static var latitude: Double = 0
+    public static var longitude: Double = 0
+    
     
 }
+
+

@@ -85,8 +85,9 @@ public class Server {
         request.httpMethod = "POST"
         //request.addValue(Server.token!, forHTTPHeaderField: "token")
         let hastags : String! = hashtag == nil ? "": hashtag!
-        let longitude = 1.233
-        let latitude = 12.124
+       
+        let longitude = Settings.longitude
+        let latitude =  Settings.latitude
         let headers: HTTPHeaders = ["token":Server.token!]
         
         
@@ -183,3 +184,5 @@ extension NSMutableData {
         append(data!)
     }
 }
+
+

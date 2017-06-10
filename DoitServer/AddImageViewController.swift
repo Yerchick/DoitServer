@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class AddImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
@@ -17,7 +18,7 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func uploadImage(_ sender: Any) {
         if(imageView.image != nil){
             
-            
+           self.updateCurrentLocation()
             
             let imageData = UIImageJPEGRepresentation(imageView.image!, 0.3)
             if imageData == nil {return}
@@ -28,7 +29,7 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
                 switch(result){
                 case .Success(let responce):
                     DispatchQueue.main.async {
-                        self.navigationController?.performSegue(withIdentifier: "collectionView", sender: self)
+                        self.navigationController!.pushViewController(self.storyboard!.instantiateViewController(withIdentifier:"collectionView"), animated: true)
                     }
                     break
                 case .Failure(_):
@@ -85,15 +86,21 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
+    
 
 }
+
+extension AddImageViewController : CLLocationManagerDelegate{
+    func updateCurrentLocation() {
+    let locationManager = CLLocationManager()
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.requestAlwaysAuthorization()
+    locationManager.startUpdatingLocation()
+    let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
+        Settings.latitude = locValue.latitude as Double
+        Settings.longitude = locValue.longitude as Double
+    }
+}
+

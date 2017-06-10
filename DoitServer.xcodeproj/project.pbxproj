@@ -18,6 +18,7 @@
 		CE6AA4DB1EEC067D00DA8A5F /* FLAnimatedImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE6AA4D91EEC067D00DA8A5F /* FLAnimatedImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE6AA4DD1EEC0E3D00DA8A5F /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AA4DC1EEC0E3D00DA8A5F /* PopoverViewController.swift */; };
 		CE6AA4DF1EEC189900DA8A5F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AA4DE1EEC189900DA8A5F /* Settings.swift */; };
+		CE6AA4E11EEC1C9A00DA8A5F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6AA4E01EEC1C9A00DA8A5F /* CoreLocation.framework */; };
 		CEA87EAB1EE02FE3003397D1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAA1EE02FE3003397D1 /* SignInViewController.swift */; };
 		CEA87EAD1EE0305D003397D1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAC1EE0305D003397D1 /* SignUpViewController.swift */; };
 		CEA87EAF1EE03981003397D1 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA87EAE1EE03981003397D1 /* ImagesView.swift */; };
@@ -55,6 +56,7 @@
 		CE6AA4D91EEC067D00DA8A5F /* FLAnimatedImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAnimatedImage.framework; path = Carthage/Build/iOS/FLAnimatedImage.framework; sourceTree = "<group>"; };
 		CE6AA4DC1EEC0E3D00DA8A5F /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		CE6AA4DE1EEC189900DA8A5F /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		CE6AA4E01EEC1C9A00DA8A5F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CEA87EAA1EE02FE3003397D1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		CEA87EAC1EE0305D003397D1 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CEA87EAE1EE03981003397D1 /* ImagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6AA4E11EEC1C9A00DA8A5F /* CoreLocation.framework in Frameworks */,
 				CE50970D1EE83F5400F19EB3 /* AlamofireImage.framework in Frameworks */,
 				CE6AA4DA1EEC067D00DA8A5F /* FLAnimatedImage.framework in Frameworks */,
 				CE50970A1EE83CBA00F19EB3 /* Alamofire.framework in Frameworks */,
@@ -153,6 +156,7 @@
 		CEE97F851EE6F6A300C765C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE6AA4E01EEC1C9A00DA8A5F /* CoreLocation.framework */,
 				CE6AA4D91EEC067D00DA8A5F /* FLAnimatedImage.framework */,
 				CE50970B1EE83CCB00F19EB3 /* AlamofireImage.framework */,
 				CEE97F881EE6FBEB00C765C7 /* Alamofire.framework */,
